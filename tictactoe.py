@@ -36,23 +36,15 @@ class TicTacToe:
         empty_cells = (self.top.count("_") + self.mid.count("_") + self.bot.count("_"))
 
         if any([self.top[0] == self.top[1] == self.top[2] != "_",  # top row
+                self.mid[0] == self.mid[1] == self.mid[2] != "_",  # middle row
+                self.bot[0] == self.bot[1] == self.bot[2] != "_",  # bottom row
                 self.top[0] == self.mid[0] == self.bot[0] != "_",  # left column
+                self.top[1] == self.mid[1] == self.bot[1] != "_",  # middle column
+                self.top[2] == self.mid[2] == self.bot[2] != "_",  # right column
+                self.top[2] == self.mid[1] == self.bot[0] != "_",  # main diagonal
                 self.top[0] == self.mid[1] == self.bot[2] != "_",  # second diagonal
                 ]):
-            print(f"{self.top[0]} wins")
-            exit()
-
-        elif any([self.mid[0] == self.mid[1] == self.mid[2] != "_",  # middle line
-                  self.top[1] == self.mid[1] == self.bot[1] != "_",  # middle column
-                  self.top[2] == self.mid[1] == self.bot[0] != "_",  # main diagonal
-                  ]):
-            print(f"{self.mid[1]} wins")
-            exit()
-
-        elif any([self.bot[0] == self.bot[1] == self.bot[2] != "_",  # bottom line
-                  self.top[2] == self.mid[2] == self.bot[2] != "_"]  # right column
-                 ):
-            print(f"{self.bot[2]} wins")
+            print(f"{self.curr_player_sign} wins")
             exit()
 
         elif empty_cells < 1:  # at least 1 move left  # issue is here, DRAW function is not working
@@ -64,6 +56,6 @@ if __name__ == '__main__':
     game = TicTacToe()
     game.print_grid()  # print 1st clear grid/field
     while True:
-        game.game_rules_validation()
         game.user_move()
+        game.game_rules_validation()
         game.switch_player()
