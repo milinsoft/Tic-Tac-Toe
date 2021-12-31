@@ -33,7 +33,7 @@ class TicTacToe:
             The fist who will put own sign 3 time in row, column or horizontally - wins.
             In all cells are occupied and there is no winner - it's a "Draw", game will be over with no winner.
         """
-        empty_cells = (self.top.count("_") + self.mid.count("_") + self.bot.count("_"))
+        empty_cells = sum((self.top.count("_"), self.mid.count("_"), self.bot.count("_")))
 
         if any([self.top[0] == self.top[1] == self.top[2] != "_",  # top row
                 self.mid[0] == self.mid[1] == self.mid[2] != "_",  # middle row
